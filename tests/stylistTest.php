@@ -24,5 +24,37 @@
             //Assert
             $this->assertEquals($name, $result);
         }
+
+        function test_getId()
+        {
+            //Arrange
+            $name = "Nina";
+            $id = 5;
+            $test_Stylist = new Stylist($name, $id);
+
+            //Act
+            $result = $test_Stylist->getId();
+
+            //Assert
+            $this->assertEquals(5, $result);
+        }
+
+        function test_save()
+        {
+            //Arrange
+            $name = "Laura";
+            $id = 5;
+            $test_Stylist = new Stylist($name, $id);
+            $test_Stylist->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            //array starts at 0, not 1
+            $this->assertEquals($test_Stylist, $result[6]);
+        }
+
+
     }
 ?>
