@@ -5,6 +5,7 @@
     require_once __DIR__."/../src/Client.php";
 
     $app = new Silex\Application();
+    $app['debug'] = true;
 
     $DB = new PDO('pgsql:host=localhost;dbname=hair_salon');
 
@@ -16,7 +17,7 @@
         return $app['twig']->render('index.twig');
     });
 
-    $app->get("/stylist", function() use ($app) {
+    $app->post("/stylist", function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
         return $app['twig']->render('index.twig', array('stylists' => Stylist::getAll()));
