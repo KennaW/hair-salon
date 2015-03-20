@@ -11,6 +11,11 @@
 
     class StylistTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Stylist::deleteAll();
+        }
+
         function test_getName()
         {
             //Arrange
@@ -39,6 +44,9 @@
             $this->assertEquals(5, $result);
         }
 
+        // Function no longer passing.
+        // seems like id isn't clearning for some reason.
+        // weirdly, get all passes
         function test_save()
         {
             //Arrange
@@ -46,15 +54,35 @@
             $id = 5;
             $test_Stylist = new Stylist($name, $id);
             $test_Stylist->save();
+            var_dump($id);
 
             //Act
             $result = Stylist::getAll();
+            var_dump($result);
 
             //Assert
             //array starts at 0, not 1
             $this->assertEquals($test_Stylist, $result[6]);
         }
 
+        function test_getAll()
+        {
+            //Arrange
+            $name = "Gretchen";
+            $id = 5;
+            $name2 = "Seanna";
+            $id2 = 6;
+            $test_Stylist = new Stylist($name, $id);
+            $test_Stylist->save();
+            $test_Stylist2 = new Stylist($name2, $id2);
+            $test_Stylist2->save();
+
+            //Act
+            $result = Stylist::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Stylist, $test_Stylist2], $result);
+        }
 
     }
 ?>
