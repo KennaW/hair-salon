@@ -16,10 +16,10 @@
         return $app['twig']->render('index.twig');
     });
 
-    $app->post("/categories", function() use ($app) {
-        $category = new Category($_POST['name']);
-        $category->save();
-        return $app['twig']->render('categories.twig', array('categories' => Category::getAll()));
+    $app->post("/stylist", function() use ($app) {
+        $stylist = new Stylist($_POST['name']);
+        $stylist->save();
+        return $app['twig']->render('stylist.twig', array('stylists' => Stylist::getAll()));
     });
 
 ?>

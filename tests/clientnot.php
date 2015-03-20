@@ -85,24 +85,5 @@
             $this->assertEquals([$test_Stylist, $test_Stylist2], $result);
         }
 
-        function test_find()
-        {
-            //Arrange
-            $name = "Gretchen";
-            $id = 5;
-            $name2 = "Seanna";
-            $id2 = 6;
-            $test_Stylist = new Stylist($name, $id);
-            $test_Stylist->save();
-            $test_Stylist2 = new Stylist($name2, $id2);
-            $test_Stylist2->save();
-
-            //Act
-            $result = Stylist::find($test_Stylist->getId());
-
-            //Assert
-            $this->assertEquals($test_Stylist, $result);
-        }
-
     }
 ?>
