@@ -44,9 +44,10 @@
             $this->assertEquals(5, $result);
         }
 
-        // Function no longer passing.
+        // Test Save function no longer passing.
         // seems like id isn't clearning for some reason.
-        // weirdly, get all passes
+        // vardump shows that id is increasing, instead of being set to 5
+        // weirdly, test_getall() passes
         function test_save()
         {
             //Arrange
@@ -62,7 +63,7 @@
 
             //Assert
             //array starts at 0, not 1
-            $this->assertEquals($test_Stylist, $result[6]);
+            $this->assertEquals($test_Stylist, $result);
         }
 
         function test_getAll()
