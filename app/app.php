@@ -19,12 +19,12 @@
     $app->get("/stylist", function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
-        return $app['twig']->render('index.twig', array('stylist' => Stylist::getAll()));
+        return $app['twig']->render('index.twig', array('stylists' => Stylist::getAll()));
     });
 
     $app->get("/stylist/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist.twig', array('stylist' => $stylist, 'clients' => $stylist->getClient()));
+        return $app['twig']->render('stylist.twig', array('stylists' => $stylist, 'clients' => $stylist->getClient()));
 
     });
 
@@ -36,5 +36,5 @@
     $stylist = Stylist::find($stylist_id);
     return $app['twig']->render('stylist.twig', array('stylist' => $stylist, 'tasks' => Client::getAll()));
 });
-
+    return $app;
 ?>
